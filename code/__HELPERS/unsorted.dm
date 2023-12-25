@@ -406,6 +406,31 @@ Turf and target are separate in case you want to teleport some distance from a t
 
 	return T
 
+/**
+ * Just like get_ranged_target_turf_direct, but uses Chebyshev distance(diagonals count as 1)
+ */
+/proc/GetRangedTargetTurfMaxMetric(atom/start, atom/target, range, offset = 0)
+	if(!start || !target)
+		return null
+	var/x = target.x - start.x
+	var/y = target.y - start.y
+	if(x == 0 && y == 0)
+		return locate(start.x, start.y, start.z)
+	var/dx
+	var/dy
+	if(offset)
+		var/matrix/M = matrix(offset, MATRIX_ROTATE)
+		dx = M.a * x + M.b * y + M.c
+		dy = M.d * x + M.e * y + M.f
+	else
+		dx = x
+		dy = y
+	var/distance = max(abs(dx), abs(dy))
+	dx /= distance
+	dy /= distance
+	var/result_x = clamp(round(start.x + dx * range, 1), 1, world.maxx)
+	var/result_y = clamp(round(start.y + dy * range, 1), 1, world.maxy)
+	return locate(result_x, result_y, start.z)
 
 // returns turf relative to A offset in dx and dy tiles
 // bound to map limits

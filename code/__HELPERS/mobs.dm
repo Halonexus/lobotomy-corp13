@@ -719,3 +719,75 @@ GLOBAL_LIST_EMPTY(species_list)
 				S.take_damage(damage, damage_type)
 			. += S
 	return
+
+/mob/proc/HurtInTurfButCooler(turf/target, list/already_hit_list = list(), damage = 0, damage_type = RED_DAMAGE, check_faction = TRUE, exact_faction_match = FALSE, attack_direction = null, hurt_hidden = FALSE, hurt_objects = FALSE)
+	var/list/exclude = typecacheof(list(/obj/structure/disposalpipe, /obj/structure/lattice, /obj/structure/sign, /obj/machinery/light, /obj/structure/extinguisher_cabinet, /obj/machinery/containment_panel, /obj/machinery/computer/security/telescreen, /obj/machinery/facility_holomap))
+	var/list/hiding_places = typecacheof(list(/obj/structure/closet, /obj/structure/bodycontainer, /obj/machinery/disposal, /obj/machinery/cryopod, /obj/machinery/sleeper, /obj/machinery/fat_sucker))
+	var/list/new_hit_list = list()
+	if(!istype(target))
+		return
+	var/list/possible_living_targets = list()
+	for(var/mob/living/L in target)
+		possible_living_targets += L
+	if(hurt_hidden)
+		for(var/obj/O in target)
+			if(is_type_in_typecache(O, hiding_places))
+				for(var/mob/living/L in O)
+					possible_living_targets += L
+	for(var/V in possible_living_targets)
+		var/mob/living/L = V
+		if(L == src)
+			continue
+		if(already_hit_list[L])
+			continue
+		if(new_hit_list[L])
+			continue
+		if(is_type_in_typecache(L, exclude))
+			continue
+		if(check_faction && faction_check_mob(L, exact_faction_match))
+			continue
+		if(L.status_flags & GODMODE)
+			continue
+		if(damage)
+			L.apply_damage(damage, damage_type, null, L.run_armor_check(null, damage_type), FALSE, TRUE)
+		new_hit_list[L] = TRUE
+	for(var/obj/vehicle/sealed/mecha/M in target)
+		if(M.occupants && (src in M.occupants))
+			continue
+		if(is_type_in_typecache(M, exclude))
+			continue
+		if(already_hit_list[M])
+			continue
+		if(new_hit_list[M])
+			continue
+		if(check_faction && M.occupants && M.occupants.len > 0 && faction_check_mob(M.occupants[1], exact_faction_match))
+			continue
+		if(damage)
+			M.take_damage(damage, damage_type, attack_dir = attack_direction)
+		new_hit_list[M] = TRUE
+	if(hurt_objects && damage_type != WHITE_DAMAGE)
+		for(var/obj/structure/S in target)
+			if(already_hit_list[S])
+				continue
+			if(new_hit_list[S])
+				continue
+			if(is_type_in_typecache(S, exclude))
+				continue
+			if(S.resistance_flags & INDESTRUCTIBLE)
+				continue
+			if(damage)
+				S.take_damage(damage, damage_type)
+			new_hit_list[S] = TRUE
+		for(var/obj/machinery/M in target)
+			if(already_hit_list[M])
+				continue
+			if(new_hit_list[M])
+				continue
+			if(is_type_in_typecache(M, exclude))
+				continue
+			if(M.resistance_flags & INDESTRUCTIBLE)
+				continue
+			if(damage)
+				M.take_damage(damage, damage_type)
+			new_hit_list[M] = TRUE
+	return new_hit_list
