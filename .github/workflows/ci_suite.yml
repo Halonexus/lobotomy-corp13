@@ -33,7 +33,7 @@ jobs:
       - name: Install Tools
         run: |
           pip3 install --upgrade pip
-          pip3 install --upgrade Pillow
+          pip3 install --upgrade Pillow==9.5.0
           pip3 show Pillow
           pip3 install setuptools
           bash tools/ci/install_spaceman_dmm.sh dreamchecker
