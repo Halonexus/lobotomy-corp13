@@ -35,6 +35,8 @@ jobs:
           pip3 install setuptools
           bash tools/ci/install_spaceman_dmm.sh dreamchecker
           tools/bootstrap/python -c ''
+          pip3 show pillow
+          pip3 install pillow
       - name: Run Linters
         run: |
           bash tools/ci/check_filedirs.sh lobotomy-corp13.dme
