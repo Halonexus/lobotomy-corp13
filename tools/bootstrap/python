@@ -73,11 +73,12 @@ if [ "$(uname)" = "Linux" ] || [ ! -f "$PythonExe" ]; then
 		exit 1
 	fi
 fi
-
+echo which python
+echo which python3
+echo "$PythonExe"
 # Use pip to install our requirements
 if [ ! -f "$PythonDir/requirements.txt" ] || [ "$(b2sum < "$Sdk/requirements.txt")" != "$(b2sum < "$PythonDir/requirements.txt")" ]; then
 	echo "Updating dependencies..."
-	PythonExe=python3
 	"$PythonExe" -m pip install -U wheel
 	"$PythonExe" -m pip install -U pip -r "$Sdk/requirements.txt"
 	cp "$Sdk/requirements.txt" "$PythonDir/requirements.txt"
