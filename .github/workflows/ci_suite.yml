@@ -32,8 +32,13 @@ jobs:
           key: ${{ runner.os }}-yarn
       - name: Install Tools
         run: |
+          pip3 --version
           pip3 install --upgrade pip
-          pip3.7.9 install --upgrade Pillow==9.5.0
+          pip3 --version
+          python --version
+          which python
+          which python3
+          pip3 install --upgrade Pillow==9.5.0
           pip3 show Pillow
           pip3 install setuptools
           bash tools/ci/install_spaceman_dmm.sh dreamchecker
