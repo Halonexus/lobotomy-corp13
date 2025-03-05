@@ -8,25 +8,25 @@ on:
     - master
 jobs:
   run_linters:
-    if: "!contains(github.event.head_commit.message, '[ci skip]')"
+    if: (!contains(github.event.head_commit.message, '[ci skip]'))
     name: Run Linters
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     env:
       TG_BOOTSTRAP_NODE_LINUX: 1
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4.2.2
       - name: Setup SpacemanDMM cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4.2.0
         with:
           path: $HOME/SpacemanDMM
           key: ${{ runner.os }}-spacemandmm
       - name: Setup bootstrap cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4.2.0
         with:
           path: tools/bootstrap/.cache
           key: ${{ runner.os }}-bootstrap
       - name: Setup yarn cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4.2.0
         with:
           path: tgui/.yarn/cache
           key: ${{ runner.os }}-yarn
@@ -53,25 +53,25 @@ jobs:
           outputFile: output-annotations.txt
 
   compile_all_maps:
-    if: "!contains(github.event.head_commit.message, '[ci skip]')"
+    if: (!contains(github.event.head_commit.message, '[ci skip]'))
     name: Compile Maps
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     env:
       TG_BOOTSTRAP_NODE_LINUX: 1
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4.2.2
       - name: Setup BYOND cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4.2.0
         with:
           path: $HOME/BYOND
           key: ${{ runner.os }}-byond
       - name: Setup bootstrap cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4.2.0
         with:
           path: tools/bootstrap/.cache
           key: ${{ runner.os }}-bootstrap
       - name: Setup yarn cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4.2.0
         with:
           path: tgui/.yarn/cache
           key: ${{ runner.os }}-yarn
@@ -84,9 +84,9 @@ jobs:
           bash tools/ci/dm.sh -DCIBUILDING -DCITESTING -DALL_MAPS lobotomy-corp13.dme
 
   run_all_tests:
-    if: "!contains(github.event.head_commit.message, '[ci skip]')"
+    if: (!contains(github.event.head_commit.message, '[ci skip]'))
     name: Integration Tests
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     env:
       TG_BOOTSTRAP_NODE_LINUX: 1
     services:
@@ -98,19 +98,19 @@ jobs:
           - 3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4.2.2
       - name: Setup BYOND cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4.2.0
         with:
           path: $HOME/BYOND
           key: ${{ runner.os }}-byond
       - name: Setup bootstrap cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4.2.0
         with:
           path: tools/bootstrap/.cache
           key: ${{ runner.os }}-bootstrap
       - name: Setup yarn cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4.2.0
         with:
           path: tgui/.yarn/cache
           key: ${{ runner.os }}-yarn
@@ -136,18 +136,18 @@ jobs:
           bash tools/ci/run_server.sh
 
   test_windows:
-    if: "!contains(github.event.head_commit.message, '[ci skip]')"
+    if: (!contains(github.event.head_commit.message, '[ci skip]'))
     name: Windows Build
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4.2.2
       - name: Setup bootstrap cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4.2.0
         with:
           path: tools/bootstrap/.cache
           key: ${{ runner.os }}-bootstrap
       - name: Setup yarn cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4.2.0
         with:
           path: tgui/.yarn/cache
           key: ${{ runner.os }}-yarn
