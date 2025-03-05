@@ -32,13 +32,12 @@ jobs:
           key: ${{ runner.os }}-yarn
       - name: Install Tools
         run: |
-          pip3 install --upgrade Pillow
-          pip3 show Pillow
           pip3 install setuptools
           bash tools/ci/install_spaceman_dmm.sh dreamchecker
           tools/bootstrap/python -c ''
       - name: Run Linters
         run: |
+          pip3 show Pillow
           bash tools/ci/check_filedirs.sh lobotomy-corp13.dme
           bash tools/ci/check_changelogs.sh
           find . -name "*.php" -print0 | xargs -0 -n1 php -l

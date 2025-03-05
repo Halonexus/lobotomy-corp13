@@ -1,3 +1,4 @@
+#!/bin/sh
 # Tools for working with modern DreamMaker icon files (PNGs + metadata)
 
 import math
