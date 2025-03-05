@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # Tools for working with modern DreamMaker icon files (PNGs + metadata)
 
 import math
