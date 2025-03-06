@@ -230,7 +230,7 @@
 
 /obj/item/book/proc/on_read(mob/user)
 	if(dat)
-		user << browse("<meta charset=UTF-8><TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book[window_size != null ? ";size=[window_size]" : ""]")
+		user << browse("<!DOCTYPE html><meta charset=UTF-8><TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book[window_size != null ? ";size=[window_size]" : ""]")
 		onclose(user, "book")
 	else
 		to_chat(user, "<span class='notice'>This book is completely blank!</span>")

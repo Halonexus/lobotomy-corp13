@@ -355,11 +355,11 @@
 	return BRUTELOSS
 
 /obj/item/dest_tagger/proc/openwindow(mob/user)
-	var/dat = "<tt><center><h1><b>TagMaster 2.2</b></h1></center>"
+	var/dat = "<!DOCTYPE html><tt><center><h1><b>TagMaster 2.2</b></h1></center>"
 
 	dat += "<table style='width:100%; padding:4px;'><tr>"
 	for (var/i = 1, i <= GLOB.TAGGERLOCATIONS.len, i++)
-		dat += "<td><a href='?src=[REF(src)];nextTag=[i]'>[GLOB.TAGGERLOCATIONS[i]]</a></td>"
+		dat += "<td><a href='byond://?src=[REF(src)];nextTag=[i]'>[GLOB.TAGGERLOCATIONS[i]]</a></td>"
 
 		if(i%4==0)
 			dat += "</tr><tr>"

@@ -15,15 +15,12 @@ import { CSS_COLORS } from '../constants';
 export const unit = value => {
   if (typeof value === 'string') {
     // Transparently convert pixels into rem units
-    if (value.endsWith('px') && !Byond.IS_LTE_IE8) {
+    if (value.endsWith('px')) {
       return parseFloat(value) / 12 + 'rem';
     }
     return value;
   }
   if (typeof value === 'number') {
-    if (Byond.IS_LTE_IE8) {
-      return value * 12 + 'px';
-    }
     return value + 'rem';
   }
 };
@@ -161,11 +158,6 @@ export const computeBoxProps = props => {
   // Compute props
   for (let propName of Object.keys(props)) {
     if (propName === 'style') {
-      continue;
-    }
-    // IE8: onclick workaround
-    if (Byond.IS_LTE_IE8 && propName === 'onClick') {
-      computedProps.onclick = props[propName];
       continue;
     }
     const propValue = props[propName];

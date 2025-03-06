@@ -117,7 +117,7 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 	for(var/obj/machinery/camera/C in GLOB.cameranet.cameras)
 		CL += C
 
-	var/output = {"<B>Camera Abnormalities Report</B><HR>
+	var/output = {"<!DOCTYPE html><B>Camera Abnormalities Report</B><HR>
 <B>The following abnormalities have been detected. The ones in red need immediate attention: Some of those in black may be intentional.</B><BR><ul>"}
 
 	for(var/obj/machinery/camera/C1 in CL)
@@ -167,7 +167,7 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 	set name = "Show roundstart AT list"
 	set desc = "Displays a list of active turfs coordinates at roundstart"
 
-	var/dat = {"<b>Coordinate list of Active Turfs at Roundstart</b>
+	var/dat = {"<!DOCTYPE html><b>Coordinate list of Active Turfs at Roundstart</b>
 		<br>Real-time Active Turfs list you can see in Air Subsystem at active_turfs var<br>"}
 
 	for(var/t in GLOB.active_turfs_startlist)

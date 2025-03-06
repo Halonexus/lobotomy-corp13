@@ -20,11 +20,6 @@ export const computeFlexProps = props => {
   return {
     className: classes([
       'Flex',
-      Byond.IS_LTE_IE10 && (
-        direction === 'column'
-          ? 'Flex--iefix--column'
-          : 'Flex--iefix'
-      ),
       inline && 'Flex--inline',
       className,
     ]),
@@ -61,8 +56,6 @@ export const computeFlexItemProps = props => {
   return {
     className: classes([
       'Flex__item',
-      Byond.IS_LTE_IE10 && 'Flex__item--iefix',
-      Byond.IS_LTE_IE10 && grow > 0 && 'Flex__item--iefix--grow',
       className,
     ]),
     style: {

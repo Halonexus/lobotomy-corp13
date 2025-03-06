@@ -89,6 +89,7 @@ SUBSYSTEM_DEF(pai)
 
 	var/dat = ""
 	dat += {"
+			<!DOCTYPE html>
 			<style type="text/css">
 
 			p.top {
@@ -157,6 +158,7 @@ SUBSYSTEM_DEF(pai)
 	var/dat = ""
 
 	dat += {"
+			<!DOCTYPE html>
 			<style type="text/css">
 
 			p.top {

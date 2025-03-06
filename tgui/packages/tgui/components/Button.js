@@ -47,8 +47,7 @@ export const Button = props => {
       + `'onClick' instead and read: `
       + `https://infernojs.org/docs/guides/event-handling`);
   }
-  // IE8: Use a lowercase "onclick" because synthetic events are fucked.
-  // IE8: Use an "unselectable" prop because "user-select" doesn't work.
+
   return (
     <Box
       className={classes([
@@ -67,7 +66,6 @@ export const Button = props => {
         className,
       ])}
       tabIndex={!disabled && '0'}
-      unselectable={Byond.IS_LTE_IE8}
       onClick={e => {
         if (!disabled && onClick) {
           onClick(e);

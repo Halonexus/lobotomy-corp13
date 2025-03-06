@@ -3,13 +3,13 @@
  *
  */
 /mob/dead/new_player/proc/handle_player_polling()
-	var/list/output = list("<div align='center'><B>Player polls</B><hr><table>")
+	var/list/output = list("<!DOCTYPE html><div align='center'><B>Player polls</B><hr><table>")
 	var/rs = REF(src)
 	for(var/p in GLOB.polls)
 		var/datum/poll_question/poll = p
 		if((poll.admin_only && !client.holder) || poll.future_poll)
 			continue
-		output += "<tr bgcolor='#e2e2e2'><td><a href='?src=[rs];viewpoll=[REF(poll)]'><b>[poll.question]</b></a></td></tr>"
+		output += "<tr bgcolor='#e2e2e2'><td><a href='byond://?src=[rs];viewpoll=[REF(poll)]'><b>[poll.question]</b></a></td></tr>"
 	output += "</table>"
 	src << browse(jointext(output, ""),"window=playerpolllist;size=500x300")
 
@@ -53,14 +53,14 @@
 	if(query_option_get_voted.NextRow())
 		voted_option_id = text2num(query_option_get_voted.item[1])
 	qdel(query_option_get_voted)
-	var/list/output = list("<div align='center'><B>Player poll</B><hr><b>Question: [poll.question]</b><br>")
+	var/list/output = list("<!DOCTYPE html><div align='center'><B>Player poll</B><hr><b>Question: [poll.question]</b><br>")
 	if(poll.subtitle)
 		output += "[poll.subtitle]<br>"
 	output += "<font size='2'>Poll runs from <b>[poll.start_datetime]</b> until <b>[poll.end_datetime]</b></font><br>"
 	if(poll.allow_revoting)
 		output += "<font size='2'>Revoting is enabled.</font>"
 	if(!voted_option_id || poll.allow_revoting)
-		output += {"<form action='?src=[REF(src)]' method='get'>
+		output += {"<form action='byond://?src=[REF(src)]' method='get'>
 		<input type='hidden' name='src' value='[REF(src)]'>
 		<input type='hidden' name='votepollref' value='[REF(poll)]'>
 		"}
@@ -97,14 +97,14 @@
 	if(query_text_get_replytext.NextRow())
 		reply_text = query_text_get_replytext.item[1]
 	qdel(query_text_get_replytext)
-	var/list/output = list("<div align='center'><B>Player poll</B><hr><b>Question: [poll.question]</b><br>")
+	var/list/output = list("<!DOCTYPE html><div align='center'><B>Player poll</B><hr><b>Question: [poll.question]</b><br>")
 	if(poll.subtitle)
 		output += "[poll.subtitle]<br>"
 	output += "<font size='2'>Feedback gathering runs from <b>[poll.start_datetime]</b> until <b>[poll.end_datetime]</b></font><br>"
 	if(poll.allow_revoting)
 		output += "<font size='2'>Revoting is enabled.</font>"
 	if(!reply_text || poll.allow_revoting)
-		output += {"<form action='?src=[REF(src)]' method='get'>
+		output += {"<form action='byond://?src=[REF(src)]' method='get'>
 		<input type='hidden' name='src' value='[REF(src)]'>
 		<input type='hidden' name='votepollref' value='[REF(poll)]'>
 		<font size='2'>Please provide feedback below. You can use any letters of the English alphabet, numbers and the symbols: . , ! ? : ; -</font><br>
@@ -134,14 +134,14 @@
 	while(query_rating_get_votes.NextRow())
 		voted_ratings += list("[query_rating_get_votes.item[1]]" = query_rating_get_votes.item[2])
 	qdel(query_rating_get_votes)
-	var/list/output = list("<div align='center'><B>Player poll</B><hr><b>Question: [poll.question]</b><br>")
+	var/list/output = list("<!DOCTYPE html><div align='center'><B>Player poll</B><hr><b>Question: [poll.question]</b><br>")
 	if(poll.subtitle)
 		output += "[poll.subtitle]<br>"
 	output += "<font size='2'>Poll runs from <b>[poll.start_datetime]</b> until <b>[poll.end_datetime]</b></font><br>"
 	if(poll.allow_revoting)
 		output += "<font size='2'>Revoting is enabled.</font>"
 	if(!length(voted_ratings) || poll.allow_revoting)
-		output += {"<form action='?src=[REF(src)]' method='get'>
+		output += {"<form action='byond://?src=[REF(src)]' method='get'>
 		<input type='hidden' name='src' value='[REF(src)]'>
 		<input type='hidden' name='votepollref' value='[REF(poll)]'>
 		"}
@@ -189,14 +189,14 @@
 	while(query_multi_get_votes.NextRow())
 		voted_for += text2num(query_multi_get_votes.item[1])
 	qdel(query_multi_get_votes)
-	var/list/output = list("<div align='center'><B>Player poll</B><hr><b>Question: [poll.question]</b><br>")
+	var/list/output = list("<!DOCTYPE html><div align='center'><B>Player poll</B><hr><b>Question: [poll.question]</b><br>")
 	if(poll.subtitle)
 		output += "[poll.subtitle]<br>"
 	output += "You can select up to [poll.options_allowed] options. If you select more, the first [poll.options_allowed] will be saved.<br><font size='2'>Poll runs from <b>[poll.start_datetime]</b> until <b>[poll.end_datetime]</b></font><br>"
 	if(poll.allow_revoting)
 		output += "<font size='2'>Revoting is enabled.</font>"
 	if(!length(voted_for) || poll.allow_revoting)
-		output += {"<form action='?src=[REF(src)]' method='get'>
+		output += {"<form action='byond://?src=[REF(src)]' method='get'>
 		<input type='hidden' name='src' value='[REF(src)]'>
 		<input type='hidden' name='votepollref' value='[REF(poll)]'>
 		"}
@@ -251,7 +251,7 @@
 	//otherwise just shuffle the options
 	else
 		prepared_options = shuffle(poll.options)
-	var/list/output = list({"<html><head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	var/list/output = list({"<!DOCTYPE html><html><head>
 	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
 	<script src="[SSassets.transport.get_asset_url("jquery.min.js")]"></script>
 	<script src="[SSassets.transport.get_asset_url("jquery-ui.custom-core-widgit-mouse-sortable-min.js")]"></script>
@@ -288,7 +288,7 @@
 		output += "<font size='2'>Revoting is enabled.</font>"
 	output += "Please sort the options in the order of <b>most preferred</b> to <b>least preferred</b><br></div>"
 	if(!length(voted_for) || poll.allow_revoting)
-		output += {"<form action='?src=[REF(src)]' method='POST'>
+		output += {"<form action='byond://?src=[REF(src)]' method='POST'>
 		<input type='hidden' name='src' value='[REF(src)]'>
 		<input type='hidden' name='votepollref' value='[REF(poll)]'>
 		<input type='hidden' name='IRVdata' id='IRVdata'>

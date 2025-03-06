@@ -242,8 +242,8 @@ GLOBAL_LIST_EMPTY(PDAs)
 			if (0)
 				dat += "<h2>PERSONAL DATA ASSISTANT v.1.2</h2>"
 				dat += "Owner: [owner], [ownjob]<br>"
-				dat += text("ID: <a href='?src=[REF(src)];choice=Authenticate'>[id ? "[id.registered_name], [id.assignment]" : "----------"]")
-				dat += text("<br><a href='?src=[REF(src)];choice=UpdateInfo'>[id ? "Update PDA Info" : ""]</A><br><br>")
+				dat += text("ID: <a href='byond://?src=[REF(src)];choice=Authenticate'>[id ? "[id.registered_name], [id.assignment]" : "----------"]")
+				dat += text("<br><a href='byond://?src=[REF(src)];choice=UpdateInfo'>[id ? "Update PDA Info" : ""]</A><br><br>")
 
 				dat += "[station_time_timestamp()]<br>" //:[world.time / 100 % 6][world.time / 100 % 10]"
 				dat += "[time2text(world.realtime, "MMM DD")] [GLOB.year_integer+540]"
@@ -828,7 +828,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 		var/hrefstart
 		var/hrefend
 		if (isAI(L))
-			hrefstart = "<a href='?src=[REF(L)];track=[html_encode(signal.data["name"])]'>"
+			hrefstart = "<a href='byond://?src=[REF(L)];track=[html_encode(signal.data["name"])]'>"
 			hrefend = "</a>"
 
 		if(signal.data["automated"])
@@ -1211,7 +1211,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	if(incapacitated())
 		return
 	if(!isnull(aiPDA))
-		var/HTML = "<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>AI PDA Message Log</title></head><body>[aiPDA.tnote]</body></html>"
+		var/HTML = "<!DOCTYPE html><html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>AI PDA Message Log</title></head><body>[aiPDA.tnote]</body></html>"
 		user << browse(HTML, "window=log;size=400x444;border=1;can_resize=1;can_close=1;can_minimize=0")
 	else
 		to_chat(user, "<span class='warning'>You do not have a PDA! You should make an issue report about this.</span>")

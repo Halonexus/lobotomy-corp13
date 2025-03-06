@@ -88,7 +88,8 @@ DATU: Datums for map templates
 	unique = 1   // 0 - Normal book, 1 - Should not be treated as normal book, unable to be copied, unable to be modified
 	author = "Larry Senior"
 	title = "Prototype station 13"
-	dat = {"<html>
+	dat = {"<!DOCTYPE html>
+			<html>
 				<head>
 				<style>
 				h1 {font-size: 18px; margin: 15px 0px 5px;}

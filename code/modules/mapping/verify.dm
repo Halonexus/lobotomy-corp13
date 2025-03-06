@@ -15,6 +15,7 @@
 /// Show a rendered version of this report to a client.
 /datum/map_report/proc/show_to(client/C)
 	var/list/html = list()
+	html += "<!DOCTYPE html>"
 	html += "<p>Report for map file <tt>[original_path]</tt></p>"
 	if(crashed)
 		html += "<p><b>Validation crashed</b>: check the runtime logs.</p>"

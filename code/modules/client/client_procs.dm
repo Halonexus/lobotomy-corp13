@@ -91,7 +91,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	//byond bug ID:2256651
 	if (asset_cache_job && (asset_cache_job in completed_asset_jobs))
 		to_chat(src, "<span class='danger'>An error has been detected in how your client is receiving resources. Attempting to correct.... (If you keep seeing these messages you might want to close byond and reconnect)</span>")
-		src << browse("...", "window=asset_cache_browser")
+		src << browse("<!DOCTYPE html>...", "window=asset_cache_browser")
 		return
 	if (href_list["asset_cache_preload_data"])
 		asset_cache_preload_data(href_list["asset_cache_preload_data"])
@@ -353,7 +353,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			return
 	else if (byond_version < cwv)	//We have words for this client.
 		if(CONFIG_GET(flag/client_warn_popup))
-			var/msg = "<b>Your version of byond may be getting out of date:</b><br>"
+			var/msg = "<!DOCTYPE html><b>Your version of byond may be getting out of date:</b><br>"
 			msg += CONFIG_GET(string/client_warn_message) + "<br><br>"
 			msg += "Your version: [byond_version]<br>"
 			msg += "Required version to remove this message: [cwv] or later<br>"
@@ -773,7 +773,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	log_access("Failed Login: [key] [computer_id] [address] - CID randomizer check")
 	var/url = winget(src, null, "url")
 	//special javascript to make them reconnect under a new window.
-	src << browse({"<a id='link' href="byond://[url]?token=[token]">byond://[url]?token=[token]</a><script type="text/javascript">document.getElementById("link").click();window.location="byond://winset?command=.quit"</script>"}, "border=0;titlebar=0;size=1x1;window=redirect")
+	src << browse({"<!DOCTYPE html><a id='link' href="byond://[url]?token=[token]">byond://[url]?token=[token]</a><script type="text/javascript">document.getElementById("link").click();window.location="byond://winset?command=.quit"</script>"}, "border=0;titlebar=0;size=1x1;window=redirect")
 	to_chat(src, {"<a href="byond://[url]?token=[token]">You will be automatically taken to the game, if not, click here to be taken manually</a>"})
 
 /client/proc/note_randomizer_user()
@@ -1075,7 +1075,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 /client/proc/check_panel_loaded()
 	if(statbrowser_ready)
 		return
-	to_chat(src, "<span class='userdanger'>Statpanel failed to load, click <a href='?src=[REF(src)];reload_statbrowser=1'>here</a> to reload the panel </span>")
+	to_chat(src, "<span class='userdanger'>Statpanel failed to load, click <a href='byond://?src=[REF(src)];reload_statbrowser=1'>here</a> to reload the panel </span>")
 
 /**
  * Initializes dropdown menus on client

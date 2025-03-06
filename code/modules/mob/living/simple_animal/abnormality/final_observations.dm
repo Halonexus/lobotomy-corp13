@@ -65,15 +65,15 @@
 		menu_width += 150
 		switch(length(buttons))
 			if(1)
-				dat += {"<a style="font-size:large;float:center" href="?src=[REF(src)];button=[i]">[buttons[i]]</a>"}
+				dat += {"<a style="font-size:large;float:center" href="byond://?src=[REF(src)];button=[i]">[buttons[i]]</a>"}
 			if(2)
-				dat += {"<a style="font-size:large;[( i == 1 ? "float:left" : "float:right" )]" href="?src=[REF(src)];button=[i]">[buttons[i]]</a>"}
+				dat += {"<a style="font-size:large;[( i == 1 ? "float:left" : "float:right" )]" href="byond://?src=[REF(src)];button=[i]">[buttons[i]]</a>"}
 			if(3)
-				dat += {"<a style="font-size:large;[( i == 1 ? "float:left" : (i == 2 ? "float:center" : "float:right") )]" href="?src=[REF(src)];button=[i]">[buttons[i]]</a>"}
+				dat += {"<a style="font-size:large;[( i == 1 ? "float:left" : (i == 2 ? "float:center" : "float:right") )]" href="byond://?src=[REF(src)];button=[i]">[buttons[i]]</a>"}
 			else
 				if(i > 3)
 					dat += "<BR><BR>"
-				dat += {"<a style="font-size:large;[( i == 2 ? "float:center" : (i == 3 ? "float:right" : "float:left") )])]" href="?src=[REF(src)];button=[i]">[buttons[i]]</a>"}
+				dat += {"<a style="font-size:large;[( i == 2 ? "float:center" : (i == 3 ? "float:right" : "float:left") )])]" href="byond://?src=[REF(src)];button=[i]">[buttons[i]]</a>"}
 
 	if(!popup)
 		popup = new(user, "final_observation", "[title]", menu_width, 350)

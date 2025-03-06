@@ -2,7 +2,6 @@
 <html>
 <head>
 <title>Stat Browser</title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="Cache-Control" content="max-age=15; must-revalidate" />
 <link id="goonStyle" rel="stylesheet" type="text/css" href="browserOutput_white.css" media="all" />
@@ -729,7 +728,7 @@ function draw_mc() {
 		var td2 = document.createElement("td");
 		if(part[2]) {
 			var a = document.createElement("a");
-			a.href = "?_src_=vars;admin_token=" + href_token + ";Vars=" + part[2];
+			a.href="byond://?_src_=vars;admin_token=" + href_token + ";Vars=" + part[2];
 			a[textContentKey] = part[1];
 			td2.appendChild(a);
 		} else {
@@ -871,7 +870,7 @@ function draw_listedturf() {
 			// rather than every onmousedown getting the "part" of the last entry.
 			return function(e) {
 				e.preventDefault();
-				clickcatcher = "?src=" + part[1] + ";statpanel_item_click=1";
+				clickcatcher = "byond://?src=" + part[1] + ";statpanel_item_click=1";
 				if(e.shiftKey){
 					clickcatcher += ";statpanel_item_shiftclick=1";
 				}
@@ -908,7 +907,7 @@ function draw_sdql2(){
 		var td2 = document.createElement("td");
 		if(part[2]) {
 			var a = document.createElement("a");
-			a.href = "?src=" + part[2] + ";statpanel_item_click=1";
+			a.href="byond://?src=" + part[2] + ";statpanel_item_click=1";
 			a[textContentKey] = part[1];
 			td2.appendChild(a);
 		} else {
@@ -934,12 +933,12 @@ function draw_tickets() {
 		var td2 = document.createElement("td");
 		if(part[2]) {
 			var a = document.createElement("a");
-			a.href = "?_src_=holder;admin_token=" + href_token + ";ahelp=" + part[2] + ";ahelp_action=ticket;statpanel_item_click=1;action=ticket" ;
+			a.href="byond://?_src_=holder;admin_token=" + href_token + ";ahelp=" + part[2] + ";ahelp_action=ticket;statpanel_item_click=1;action=ticket" ;
 			a[textContentKey] = part[1];
 			td2.appendChild(a);
 		} else if(part[3]){
 			var a = document.createElement("a");
-			a.href = "?src=" + part[3] + ";statpanel_item_click=1";
+			a.href="byond://?src=" + part[3] + ";statpanel_item_click=1";
 			a[textContentKey] = part[1];
 			td2.appendChild(a);
 		} else {
@@ -959,7 +958,7 @@ function draw_interviews() {
 	manDiv.className = "interview_panel_controls"
 	var manLink = document.createElement("a");
 	manLink[textContentKey] = "Open Interview Manager Panel";
-	manLink.href = "?_src_=holder;admin_token=" + href_token + ";interview_man=1;statpanel_item_click=1";
+	manLink.href="byond://?_src_=holder;admin_token=" + href_token + ";interview_man=1;statpanel_item_click=1";
 	manDiv.appendChild(manLink);
 	body.appendChild(manDiv);
 
@@ -991,7 +990,7 @@ function draw_interviews() {
 		var td = document.createElement("td");
 		var a = document.createElement("a");
 		a[textContentKey] = part["status"];
-		a.href = "?_src_=holder;admin_token=" + href_token + ";interview=" + part["ref"] + ";statpanel_item_click=1";
+		a.href="byond://?_src_=holder;admin_token=" + href_token + ";interview=" + part["ref"] + ";statpanel_item_click=1";
 		td.appendChild(a);
 		tr.appendChild(td);
 		table.appendChild(tr);
@@ -1011,7 +1010,7 @@ function draw_spells(cat) {
 		var td2 = document.createElement("td");
 		if(part[3]) {
 			var a = document.createElement("a");
-			a.href = "?src=" + part[3] + ";statpanel_item_click=1";
+			a.href="byond://?src=" + part[3] + ";statpanel_item_click=1";
 			a[textContentKey] = part[2];
 			td2.appendChild(a);
 		} else {

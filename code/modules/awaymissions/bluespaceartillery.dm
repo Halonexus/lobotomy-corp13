@@ -26,7 +26,7 @@
 
 /obj/machinery/artillerycontrol/ui_interact(mob/user)
 	. = ..()
-	var/dat = "<B>Bluespace Artillery Control:</B><BR>"
+	var/dat = "<!DOCTYPE html><B>Bluespace Artillery Control:</B><BR>"
 	dat += "Locked on<BR>"
 	dat += "<B>Charge progress: [reload]/[reload_cooldown]:</B><BR>"
 	dat += "<A href='byond://?src=[REF(src)];fire=1'>Open Fire</A><BR>"

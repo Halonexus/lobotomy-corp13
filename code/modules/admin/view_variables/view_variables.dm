@@ -93,6 +93,7 @@
 				variable_html += D.vv_get_var(V)
 
 	var/html = {"
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
@@ -218,7 +219,7 @@
 					</td>
 					<td width='50%'>
 						<div align='center'>
-							<a id='refresh_link' href='?_src_=vars;
+							<a id='refresh_link' href='byond://?_src_=vars;
 datumrefresh=[refid];[HrefToken()]'>Refresh</a>
 							<form>
 								<select name="file" size="1"

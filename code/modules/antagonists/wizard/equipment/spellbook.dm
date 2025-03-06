@@ -704,7 +704,7 @@
 
 /obj/item/spellbook/proc/wrap(content)
 	var/dat = ""
-	dat +="<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>Spellbook</title></head>"
+	dat +="<!DOCTYPE html><html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>Spellbook</title></head>"
 	dat += {"
 	<head>
 		<style type="text/css">

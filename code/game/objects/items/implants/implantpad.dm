@@ -65,7 +65,7 @@
 		return
 
 	user.set_machine(src)
-	var/dat = "<B>Implant Mini-Computer:</B><HR>"
+	var/dat = "<!DOCTYPE html><B>Implant Mini-Computer:</B><HR>"
 	if(case)
 		if(case.imp)
 			if(istype(case.imp, /obj/item/implant))

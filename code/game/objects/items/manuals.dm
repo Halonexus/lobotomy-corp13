@@ -12,7 +12,8 @@
 	author = "Farmer John" // Whoever wrote the paper or book, can be changed by pen or PC. It is not automatically assigned.
 	title = "The Human Harvest: From Seed to Market"
 	//book contents below
-	dat = {"<html>
+	dat = {"<!DOCTYPE html>
+			<html>
 				<head>
 				<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
 				<style>
@@ -50,7 +51,8 @@
 	icon_state ="book"
 	author = "Weyland-Yutani Corp"
 	title = "APLU \"Ripley\" Construction and Operation Manual"
-	dat = {"<html>
+	dat = {"<!DOCTYPE html>
+			<html>
 				<head>
 				<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
 				<style>
@@ -116,7 +118,8 @@
 	icon_state = "cooked_book"
 	author = "Lord Frenrir Cageth"
 	title = "Chef Recipes"
-	dat = {"<html>
+	dat = {"<!DOCTYPE html>
+			<html>
 				<head>
 				<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
 				<style>
@@ -198,7 +201,8 @@
 	icon_state ="bookNuclear"
 	author = "Syndicate"
 	title = "Fission Mailed: Nuclear Sabotage 101"
-	dat = {"<html>
+	dat = {"<!DOCTYPE html>
+			<html>
 			<head>
 			<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
 			</head>
@@ -249,7 +253,7 @@
 	var/wikiurl = CONFIG_GET(string/wikiurl)
 	if(wikiurl)
 		dat = {"
-
+			<!DOCTYPE html>
 			<html>
 			<head>
 			<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>

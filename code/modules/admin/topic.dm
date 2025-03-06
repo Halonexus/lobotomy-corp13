@@ -2023,7 +2023,7 @@
 		thing_to_check = splittext(thing_to_check, ", ")
 
 
-		var/list/dat = list("Related accounts by [uppertext(href_list["showrelatedacc"])]:")
+		var/list/dat = list("<!DOCTYPE html>Related accounts by [uppertext(href_list["showrelatedacc"])]:")
 		dat += thing_to_check
 
 		usr << browse(dat.Join("<br>"), "window=related_[C];size=420x300")
@@ -2320,11 +2320,11 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/dat = {"<B>What mode do you wish to play?</B><HR>"}
+	var/dat = {"<!DOCTYPE html><B>What mode do you wish to play?</B><HR>"}
 	for(var/mode in config.modes)
-		dat += {"<A href='?src=[REF(src)];[HrefToken()];c_mode2=[mode]'>[config.mode_names[mode]]</A><br>"}
-	dat += {"<A href='?src=[REF(src)];[HrefToken()];c_mode2=secret'>Secret</A><br>"}
-	dat += {"<A href='?src=[REF(src)];[HrefToken()];c_mode2=random'>Random</A><br>"}
+		dat += {"<A href='byond://?src=[REF(src)];[HrefToken()];c_mode2=[mode]'>[config.mode_names[mode]]</A><br>"}
+	dat += {"<A href='byond://?src=[REF(src)];[HrefToken()];c_mode2=secret'>Secret</A><br>"}
+	dat += {"<A href='byond://?src=[REF(src)];[HrefToken()];c_mode2=random'>Random</A><br>"}
 	dat += {"Now: [GLOB.master_mode]"}
 	usr << browse(dat, "window=c_mode")
 
@@ -2336,9 +2336,9 @@
 		return alert(usr, "The game has already started.", null, null, null, null)
 	if(GLOB.master_mode != "secret")
 		return alert(usr, "The game mode has to be secret!", null, null, null, null)
-	var/dat = {"<B>What game mode do you want to force secret to be? Use this if you want to change the game mode, but want the players to believe it's secret. This will only work if the current game mode is secret.</B><HR>"}
+	var/dat = {"<!DOCTYPE html><B>What game mode do you want to force secret to be? Use this if you want to change the game mode, but want the players to believe it's secret. This will only work if the current game mode is secret.</B><HR>"}
 	for(var/mode in config.modes)
-		dat += {"<A href='?src=[REF(src)];[HrefToken()];f_secret2=[mode]'>[config.mode_names[mode]]</A><br>"}
-	dat += {"<A href='?src=[REF(src)];[HrefToken()];f_secret2=secret'>Random (default)</A><br>"}
+		dat += {"<A href='byond://?src=[REF(src)];[HrefToken()];f_secret2=[mode]'>[config.mode_names[mode]]</A><br>"}
+	dat += {"<A href='byond://?src=[REF(src)];[HrefToken()];f_secret2=secret'>Random (default)</A><br>"}
 	dat += {"Now: [GLOB.secret_force_mode]"}
 	usr << browse(dat, "window=f_secret")

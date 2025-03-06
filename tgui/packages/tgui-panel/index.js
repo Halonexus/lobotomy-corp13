@@ -87,7 +87,7 @@ const setupApp = () => {
   Byond.winset('output', {
     'is-visible': false,
   });
-  Byond.winset('browseroutput', {
+  Byond.winset('chat_panel', {
     'is-visible': true,
     'is-disabled': false,
     'pos': '0x0',
